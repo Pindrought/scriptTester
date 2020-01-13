@@ -1,4 +1,4 @@
-Move **"executeLua-plugin.dll"** to your plugins folder<br/>
+Move **"executeLua-plugin.dll"** (for windows) or **executeLua-plugin.so** (for linux) to your plugins folder<br/>
 In server_config.jon, add **"executeLua-plugin"** as a package
 
 Press F1 to pull up the script window.
