@@ -3,9 +3,14 @@ function OnScriptError(message) --Standard copy&paste code from onset lua script
 end
 
 local function ExecuteServerScript(player, script)
-    errorMsg = ExecuteLua(script)
-    if (errorMsg ~= 0) then
-        CallRemoteEvent(player, "OnServerExecutionError", errorMsg)
+    local func, compileError = load(script)
+    if func then
+        local success, pcallError = pcall(func)
+        if success == false then
+            CallRemoteEvent(player, "OnServerExecutionError", pcallError)
+        end
+    else
+        CallRemoteEvent(player, "OnServerExecutionError", compileError)
     end
 end
 AddRemoteEvent("ExecuteServerScript", ExecuteServerScript)
